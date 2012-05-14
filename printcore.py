@@ -122,12 +122,15 @@ class printcore():
             if(line.startswith(tuple(self.greetings)) or line.startswith('ok')):
                 self.clear=True
             if(line.startswith(tuple(self.greetings)) or line.startswith('ok') or "T:" in line):
-                if (not self.online or line.startswith(tuple(self.greetings))) and self.onlinecb is not None:
-                    try:
-                        self.onlinecb()
-                    except:
-                        pass
-                self.online=True
+                if (not self.online or line.startswith(tuple(self.greetings))):
+                    self.online=True
+                    
+                    if self.onlinecb is not None:
+                        try:
+                            self.onlinecb()
+                        except:
+                            pass
+                
                 if(line.startswith('ok')):
                     #self.resendfrom=-1
                     #put temp handling here
